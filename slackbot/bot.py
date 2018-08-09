@@ -69,10 +69,10 @@ def handle_command(user, command, channel, app):
                                                                                                                                   
 # Command for commands operations                                                                                                 
 def help():                                                                                                                       
-    response = "Currently support the following commands:\r\n"                                                                    
+    response = "\r\nCurrently support the following commands:\r\n"                                                                    
     for command in commands:                                                                                                      
         response += command + "\r\n"
-    response += "Currently support the following Applications:\r\n"
+    response += "\r\nCurrently support the following Applications:\r\n"
     for app in applications:
         response += app + "\r\n"                                                                                             
     return response                                                                           
@@ -99,7 +99,7 @@ def status(app):
     jenkins_client.build_job(app, { 'ops': status })                                                                              
     last_build_number = jenkins_client.get_job_info(app)['lastCompletedBuild']['number']                                          
     response = str(jenkins_client.get_build_info(app, last_build_number))                                                         
-    return response                                                                                                               
+    return response
                                                                                                                                   
 # Slack information                                                                                                               
 slack_client = SlackClient(os.environ.get('SLACK_API_TOKEN'))                                                                     
@@ -119,7 +119,10 @@ commands = {
     "status" : status,                                                                                                            
     "help": help                                                                                                                  
 }                                                                                                                                 
-                                                                                                                                  
-applications = ["Alpha", "Beta", "Gamma" ]                                                                                        
+
+# Get list of jobs available in Jenkins                                                                                                                                  
+applications = []
+for job in jenkins_client.get_all_jobs():
+    applications.append(str(job["name"]))                                                                                   
                                                                                                                                   
 listen()                                                                                                                          
