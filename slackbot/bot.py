@@ -57,26 +57,26 @@ def handle_event(user, command, channel, app):
 def handle_command(user, command, channel, app):
     response = "<@" + user + ">: "
     if command in commands:
-        if command is help:
-            help()
+        if command == "help":
+            response += help()
         else:
             if app in applications:
                 response += commands[command](app)
             else:
                 if app == None:
-                   response += "*" + "No application name is entered"  + "*" + help()
+                   response += "*No application name is entered*" + help()
                 else:
-                    response += "Sorry, There is no application name: " + "*" + app + "*" + help()
+                    response += "*Sorry, There is no application name: " + app + "*" + help()
     else:
-      response += "Sorry I don't understand the command: " + "*" + command + "*"+ ". " + help()
+      response += "*Sorry I don't understand the command: " + command + "*"+ ". " + help()
     return response
 
 # Command for commands operations
 def help():
-    response = "\r\nCurrently support the following commands:\r\n"
+    response = "\r\n*Currently support the following commands:*\r\n"
     for command in commands:
         response += command + "\r\n"
-    response += "\r\nCurrently support the following Applications:\r\n"
+    response += "\r\n*Currently support the following Applications:*\r\n"
     for app in applications:
         response += app + "\r\n"
     return response
