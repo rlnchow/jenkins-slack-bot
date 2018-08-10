@@ -73,7 +73,8 @@ def handle_command(user, command, channel, app):
 
 # Command for commands operations
 def help():
-    response = "\r\n*Currently support the following commands:*\r\n"
+    response = "\r\n*Expected Syntax: <Action/Command> <Application/Service>*\r\n"
+    response += "\r\n*Currently support the following commands:*\r\n"
     for command in commands:
         response += command + "\r\n"
     response += "\r\n*Currently support the following Applications:*\r\n"
