@@ -63,7 +63,10 @@ def handle_command(user, command, channel, app):
             if app in applications:
                 response += commands[command](app)
             else:
-                response += "Sorry, There is no application name: " + "*" + app + "*" + help()
+                if app == None:
+                   response += "*" + "No application name is entered"  + "*" + help()
+                else:
+                    response += "Sorry, There is no application name: " + "*" + app + "*" + help()
     else:
       response += "Sorry I don't understand the command: " + "*" + command + "*"+ ". " + help()
     return response
