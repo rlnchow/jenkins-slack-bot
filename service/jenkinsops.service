@@ -1,0 +1,14 @@
+[Unit]
+Description=Slack bot for Jenkins operation
+
+[Service]
+User=<Add user which has access to environemnt variables>
+Group=<Group Name> (optional)
+ExecStart=/usr/bin/python <Location of source code>/jenkins-slack-bot/slackbot/bot.py
+
+### below line if you want to use EnvironmentFile instead of loading values from Profile
+
+# EnvironmentFile=<Location of source code>/jenkins-slack-bot/slackbot/bot.conf
+
+[Install]
+WantedBy=multi-user.target
